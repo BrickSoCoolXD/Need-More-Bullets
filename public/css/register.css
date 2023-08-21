@@ -38,6 +38,26 @@ form .input-field {
   height: 55px;
   width: 100%;
 }
+/* Rest of your existing CSS rules */
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-10px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(10px);
+  }
+}
+
+.invalid .input-field {
+  animation: shake 0.5s ease-in-out 0.1s; /* Apply shake animation with delay */
+}
+
+/* Rest of your existing CSS rules */
+
 .input-field input {
   height: 100%;
   width: 100%;
