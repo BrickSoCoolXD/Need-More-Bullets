@@ -15,7 +15,8 @@ mongoose.connect('mongodb+srv://admin:<admin>@seez.izo4qp4.mongodb.net/?retryWri
 const indexController = require ('./controllers/indexController')
 
 //MiddleWare
-//const authMiddleware = require('./middleware/authMiddleware')
+const authMiddleware = require('./middleware/authMiddleware')
+const redirect = require('./middleware/redirect')
 
 app.use(express.static('public'))
 //Use Json & URL-encoded body parser middleware
