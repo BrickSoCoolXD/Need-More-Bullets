@@ -5,7 +5,7 @@ module.exports = (req,res) => {
         console.log("User registered sucessfully!")
         res.redirect('/')
     }).catch((error) => {
-        console.log(error)
+        //console.log(error.error)
         if (error) {
             const validationErrors = Object.keys(eror.errors).map(key => errors[key].message)
             req.flash('validationErrors', validationErrors)

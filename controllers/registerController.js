@@ -1,6 +1,17 @@
-const bcrypt = require('bcrypt')
-const User = require('../models/User')
+module.export = (req,res => {
 
-module.exports = (req,res) => {
-    const [email,password ]
-}
+    let email = ""
+    let password = ""
+    let data = req.flash('data')[0]
+
+    if (typeof data != "undefined") {
+        email = data.email
+        password = data.password
+    }
+
+    res.render('register', {
+        error: req.flash('validationErrors'),
+        email:email,
+        password:password
+    })
+})

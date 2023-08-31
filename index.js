@@ -12,11 +12,17 @@ mongoose.connect('mongodb+srv://admin:<admin>@seez.izo4qp4.mongodb.net/?retryWri
 })
 
 //Controller
-const indexController = require ('./controllers/indexController')
+app.get('/', indexController)
+app.get('/home', authMiddleware, indexController)
+app.get('/login', redirectIfAuth, loginController)
+app.get('/register', redirectIfAuth, registerController)
+app.post('/user/register', redirectIfAuth, storeUserController)
+app.post('/user/login', redirectIfAuth, loginUserController)
+app.get('/logout', logoutController)
 
 //MiddleWare
 const authMiddleware = require('./middleware/authMiddleware')
-const redirect = require('./middleware/redirect')
+const redirect = require('./middleware/redirectIfAuth')
 
 app.use(express.static('public'))
 //Use Json & URL-encoded body parser middleware
@@ -32,10 +38,6 @@ app.use('*', (req,res) => {
     next()
 })
 app.set('view engine', 'ejs')
-
-app.get('/', (req,res) => {
-    indexController(req.res);
-})
 
 app.get('/', indexController)
 
