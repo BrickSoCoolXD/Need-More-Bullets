@@ -1,4 +1,4 @@
-module.export = (req,res => {
+module.exports = (req, res) => {
 
     let email = ""
     let password = ""
@@ -10,8 +10,8 @@ module.export = (req,res => {
     }
 
     res.render('register', {
-        error: req.flash('validationErrors'),
-        email:email,
-        password:password
+        errors: req.flash('validationErrors'),
+        email: email,
+        password: password
     })
-})
+}
