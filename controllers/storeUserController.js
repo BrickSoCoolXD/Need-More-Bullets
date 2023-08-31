@@ -5,7 +5,7 @@ module.exports = (req, res) => {
         console.log("User registered successfully!")
         res.redirect('/')
     }).catch((error) => {
-        // console.log(error.errors)
+        //console.log(error.errors)
 
         if (error) {
             const validationErrors = Object.keys(error.errors).map(key => error.errors[key].message)

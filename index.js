@@ -6,8 +6,8 @@ const expressSession = require('express-session')
 const flash = require('connect-flash')
 
 //Connection Database (MongoDB)
-mongoose.connect('mongodb+srv://admin:<admin>@seez.izo4qp4.mongodb.net/?retryWrites=true&w=majority', {
-    useNewUrlParser: true
+mongoose.connect('mongodb+srv://admin:admin@seez.0g8dxw2.mongodb.net/?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
 })
 
 global.loggedIn = null
@@ -32,20 +32,22 @@ app.use(flash())
 app.use(expressSession({
     secret:'secret',
 }))
+
 app.use("*", (req, res, next) => {
     loggedIn = req.session.userId
     next()
 })
 app.set('view engine', 'ejs')
 
-app.get('/', indexController)
-app.get('/home', authMiddleware, homeController)
-app.get('/login', redirectIfAuth, loginController)
-app.get('/register', redirectIfAuth, registerController)
-app.post('/user/register', redirectIfAuth, storeUserController)
-app.post('/user/login', redirectIfAuth, loginUserController)
-app.get('/logout', logoutController)
+app.get('/', indexController);
+app.get('/home', authMiddleware, homeController);
+app.get('/login', redirectIfAuth, loginController);
+app.get('/register', redirectIfAuth, registerController);
+app.post('/user/register', redirectIfAuth, storeUserController);
+app.post('/user/login', redirectIfAuth, loginUserController);
+app.get('/logout', logoutController);
 
-app.listen(4000, () => {
-    console.log("App listening on port 4000")
-})
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
+    console.log(`App listening on port ${port}`);
+});
